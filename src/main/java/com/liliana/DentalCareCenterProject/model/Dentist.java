@@ -1,5 +1,8 @@
 package com.liliana.DentalCareCenterProject.model;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +12,7 @@ public class Dentist {
 
     //Properties
     @Id
+    @JsonProperty("dentistId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer dentistId;
     private int dentalLicense;

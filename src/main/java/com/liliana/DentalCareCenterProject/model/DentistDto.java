@@ -1,9 +1,12 @@
 package com.liliana.DentalCareCenterProject.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class DentistDto {
 
     //Properties
+    @JsonProperty("dentistId")
     private Integer dentistId;
     private Integer dentalLicense;
     private String lastName;
