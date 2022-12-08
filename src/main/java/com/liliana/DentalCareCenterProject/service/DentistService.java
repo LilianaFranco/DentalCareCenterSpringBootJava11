@@ -5,6 +5,8 @@ import com.liliana.DentalCareCenterProject.exception.ResourceNotFoundException;
 import com.liliana.DentalCareCenterProject.model.Dentist;
 import com.liliana.DentalCareCenterProject.model.DentistDto;
 import com.liliana.DentalCareCenterProject.repository.DentistRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.Set;
 
 @Service
 public class DentistService implements InterfaceDentistService{
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     //Dependency Injection
     @Autowired
@@ -42,6 +46,7 @@ public class DentistService implements InterfaceDentistService{
         DentistDto dentistDto = null;
         //If it exists, convert to dentistDto
         if(dentist.isEmpty()){
+            LOGGER.error("Dentist not found");
             throw new ResourceNotFoundException("Dentist not found");
         }else{
             dentistDto = mapper.convertValue(dentist, DentistDto.class);
