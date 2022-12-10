@@ -5,8 +5,11 @@ import com.liliana.DentalCareCenterProject.exception.ResourceNotFoundException;
 import com.liliana.DentalCareCenterProject.model.Appointment;
 import com.liliana.DentalCareCenterProject.model.AppointmentDto;
 import com.liliana.DentalCareCenterProject.repository.AppointmentRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.Set;
 @Service
 public class AppointmentService implements InterfaceAppointmentService{
 
+    private static final Logger LOGGER = LogManager.getLogger();
     //Dependency Injection
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -36,14 +40,16 @@ public class AppointmentService implements InterfaceAppointmentService{
         appointmentRepository.deleteById(appointmentId);
     }
 
+    @Transactional
     @Override
     public AppointmentDto getAppointmentById(Integer appointmentId) throws ResourceNotFoundException {
         Optional<Appointment> appointment = appointmentRepository.findById(appointmentId);
         //Create container
         AppointmentDto appointmentDto = null;
-        //If it exists, convert to appointmentDto
+        //If it exists, convert to dentistDto
         if(appointment.isEmpty()){
-            throw new ResourceNotFoundException("Appointment not found");
+            LOGGER.error("Dentist not found");
+            throw new ResourceNotFoundException("Dentist not found");
         }else{
             appointmentDto = mapper.convertValue(appointment, AppointmentDto.class);
         }
@@ -55,6 +61,7 @@ public class AppointmentService implements InterfaceAppointmentService{
         saveAppointment(appointmentDto);
     }
 
+    @Transactional
     @Override
     public Set<AppointmentDto> getAllAppointments() {
         List<Appointment> appointments = appointmentRepository.findAll();

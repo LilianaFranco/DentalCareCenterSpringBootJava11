@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AppointmentDto {
     //Properties
-    private Integer appointmentId;
+    private Integer id;
     private Dentist dentist;
     private Patient patient;
     private Date date;
@@ -15,7 +15,7 @@ public class AppointmentDto {
 
     //Constructor
     public AppointmentDto(Integer appointmentId, Dentist dentist, Patient patient, Date date) {
-        this.appointmentId = appointmentId;
+        this.id = appointmentId;
         this.dentist = dentist;
         this.patient = patient;
         this.date = date;
@@ -24,11 +24,11 @@ public class AppointmentDto {
     //Getters and Setters
 
     public Integer getAppointmentId() {
-        return appointmentId;
+        return id;
     }
 
     public void setAppointmentId(Integer appointmentId) {
-        this.appointmentId = appointmentId;
+        this.id = appointmentId;
     }
 
     public Dentist getDentist() {
@@ -59,7 +59,7 @@ public class AppointmentDto {
     @Override
     public String toString() {
         return "Appointment{" +
-                "appointmentId=" + appointmentId +
+                "appointmentId=" + id +
                 ", dentist=" + dentist +
                 ", patient=" + patient +
                 ", date=" + date +

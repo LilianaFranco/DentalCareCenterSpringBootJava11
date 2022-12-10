@@ -1,10 +1,5 @@
 package com.liliana.DentalCareCenterProject.model;
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "Dentists")
@@ -12,16 +7,11 @@ public class Dentist {
 
     //Properties
     @Id
-    @JsonProperty("dentistId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer dentistId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private int dentalLicense;
     private String lastName;
     private String name;
-
-    @OneToMany(mappedBy = "dentist")
-    @JsonIgnore
-    private Set<Patient> patients;
 
     //Empty Constructor
     public Dentist() {
@@ -29,7 +19,7 @@ public class Dentist {
 
     //Constructor
     public Dentist(Integer id, int dentalLicense, String lastName, String name) {
-        this.dentistId = id;
+        this.id = id;
         this.dentalLicense = dentalLicense;
         this.lastName = lastName;
         this.name = name;
@@ -37,11 +27,11 @@ public class Dentist {
 
     //Getters and Setters
     public Integer getId() {
-        return dentistId;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.dentistId = id;
+        this.id = id;
     }
 
     public int getDentalLicense() {
@@ -72,7 +62,7 @@ public class Dentist {
     @Override
     public String toString() {
         return "Dentist{" +
-                "id=" + dentistId +
+                "id=" + id +
                 ", dentalLicense=" + dentalLicense +
                 ", lastName='" + lastName + '\'' +
                 ", name='" + name + '\'' +

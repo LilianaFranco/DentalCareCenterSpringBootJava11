@@ -3,8 +3,10 @@ package com.liliana.DentalCareCenterProject.model;
 import java.util.Date;
 
 public class PatientDto {
+
     //Properties
-    private Integer patientId;
+    private Integer id;
+    private int idCard;
     private String lastName;
     private String name;
     private String address;
@@ -15,8 +17,9 @@ public class PatientDto {
     }
 
     //Constructor
-    public PatientDto(Integer patientId, String lastName, String name, String address, Date registrationDate) {
-        this.patientId = patientId;
+    public PatientDto(Integer id, int idCard, String lastName, String name, String address, Date registrationDate) {
+        this.id = id;
+        this.idCard = idCard;
         this.lastName = lastName;
         this.name = name;
         this.address = address;
@@ -24,12 +27,20 @@ public class PatientDto {
     }
 
     //Getters and Setters
-    public Integer getPatientId() {
-        return patientId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPatientId(Integer patientId) {
-        this.patientId = patientId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(int idCard) {
+        this.idCard = idCard;
     }
 
     public String getLastName() {
@@ -68,7 +79,7 @@ public class PatientDto {
     @Override
     public String toString() {
         return "Patient{" +
-                ", idCard=" + patientId +
+                ", idCard=" + id +
                 ", lastName='" + lastName + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +

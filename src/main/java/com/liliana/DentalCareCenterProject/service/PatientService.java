@@ -2,9 +2,13 @@ package com.liliana.DentalCareCenterProject.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liliana.DentalCareCenterProject.exception.ResourceNotFoundException;
+import com.liliana.DentalCareCenterProject.model.Dentist;
+import com.liliana.DentalCareCenterProject.model.DentistDto;
 import com.liliana.DentalCareCenterProject.model.Patient;
 import com.liliana.DentalCareCenterProject.model.PatientDto;
 import com.liliana.DentalCareCenterProject.repository.PatientRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,8 @@ import java.util.Set;
 
 @Service
 public class PatientService implements InterfacePatientService {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     //Dependency Injection
     @Autowired
@@ -42,9 +48,10 @@ public class PatientService implements InterfacePatientService {
         Optional<Patient> patient = patientRepository.findById(patientId);
         //Create container
         PatientDto patientDto = null;
-        //If it exists, convert to patientDto
+        //If it exists, convert to dentistDto
         if(patient.isEmpty()){
-            throw new ResourceNotFoundException("Patient nor found");
+            LOGGER.error("Dentist not found");
+            throw new ResourceNotFoundException("Dentist not found");
         }else{
             patientDto = mapper.convertValue(patient, PatientDto.class);
         }

@@ -1,4 +1,5 @@
 package com.liliana.DentalCareCenterProject.model;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,17 +9,13 @@ public class Patient {
 
     //Properties
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer patientId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private int idCard;
     private String lastName;
     private String name;
     private String address;
     private Date registrationDate;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dentistId", referencedColumnName = "dentistId")
-    private Dentist dentist;
 
     //Empty Constructor
     public Patient() {
@@ -26,7 +23,7 @@ public class Patient {
 
     //Constructor
     public Patient(Integer id, int idCard, String lastName, String name, String address, Date registrationDate) {
-        this.patientId = id;
+        this.id = id;
         this.idCard = idCard;
         this.lastName = lastName;
         this.name = name;
@@ -36,11 +33,11 @@ public class Patient {
 
     //Getters and Setters
     public Integer getId() {
-        return patientId;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.patientId = id;
+        this.id = id;
     }
 
     public int getIdCard() {
@@ -87,7 +84,7 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "id=" + patientId +
+                "id=" + id +
                 ", idCard=" + idCard +
                 ", lastName='" + lastName + '\'' +
                 ", name='" + name + '\'' +

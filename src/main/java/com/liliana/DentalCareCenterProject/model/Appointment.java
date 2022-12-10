@@ -1,4 +1,5 @@
 package com.liliana.DentalCareCenterProject.model;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,14 +9,14 @@ public class Appointment {
 
     //Properties
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer appointmentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "dentistId")
+    @JoinColumn(name = "dentist_id")
     private Dentist dentist;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientId")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
     @Column
     private Date date;
@@ -26,7 +27,7 @@ public class Appointment {
 
     //Constructor
     public Appointment(Integer appointmentId, Dentist dentist, Patient patient, Date date) {
-        this.appointmentId = appointmentId;
+        this.id = appointmentId;
         this.dentist = dentist;
         this.patient = patient;
         this.date = date;
@@ -35,11 +36,11 @@ public class Appointment {
     //Getters and Setters
 
     public int getAppointmentId() {
-        return appointmentId;
+        return id;
     }
 
     public void setAppointmentId(int appointmentId) {
-        this.appointmentId = appointmentId;
+        this.id = appointmentId;
     }
 
     public Dentist getDentist() {
@@ -67,10 +68,11 @@ public class Appointment {
     }
 
     //Methods
+
     @Override
     public String toString() {
         return "Appointment{" +
-                "appointmentId=" + appointmentId +
+                "id=" + id +
                 ", dentist=" + dentist +
                 ", patient=" + patient +
                 ", date=" + date +

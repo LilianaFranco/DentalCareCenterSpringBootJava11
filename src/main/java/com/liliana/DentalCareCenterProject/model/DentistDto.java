@@ -1,13 +1,10 @@
 package com.liliana.DentalCareCenterProject.model;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class DentistDto {
 
     //Properties
-    @JsonProperty("dentistId")
-    private Integer dentistId;
+    private Integer id;
     private Integer dentalLicense;
     private String lastName;
     private String name;
@@ -17,8 +14,8 @@ public class DentistDto {
     }
 
     //Constructor
-    public DentistDto(int dentistId, int dentalLicense, String lastName, String name) {
-        this.dentistId = dentistId;
+    public DentistDto(int id, int dentalLicense, String lastName, String name) {
+        this.id = id;
         this.dentalLicense = dentalLicense;
         this.lastName = lastName;
         this.name = name;
@@ -26,12 +23,12 @@ public class DentistDto {
 
     //Getters and Setters
 
-    public Integer getDentistId() {
-        return dentistId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDentistId(Integer dentistId) {
-        this.dentistId = dentistId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getDentalLicense() {
@@ -62,7 +59,7 @@ public class DentistDto {
     @Override
     public String toString() {
         return "Dentist{" +
-                "id=" + dentistId +
+                "id=" + id +
                 ", dentalLicense=" + dentalLicense +
                 ", lastName='" + lastName + '\'' +
                 ", name='" + name + '\'' +
