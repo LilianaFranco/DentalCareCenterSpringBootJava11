@@ -73,7 +73,7 @@ public class AppUser implements UserDetails {
         return true;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
